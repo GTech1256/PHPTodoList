@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tasks</title>
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="../src/style/tasks.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="header flex">
+      <div class="header_login">
+        <h2>Привет, {{ login }}.</h2>
+      </div>
+      <div class="header_state">
+        <h2>{{ state }}</h2>
+      </div>
+      <div class="header_signout" @click="signout">
+        <h2 class="header_signout__text">Выйти</h2>
+      </div>
+    </div>
+
+    <div class="add_task">
+      <input type="text" required placeholder="Новая задача" v-model="newTaskText" @keyup.enter="addTask">
+    </div>
+
+    <div class="search_task">
+      <input type="text" required placeholder="Поиск" v-model="search">
+    </div>
+
+    <div class="tasks">
+
+      <div class="task flex" :class="{done: task.done == 1}" v-for="task in tasksWithSearch" :key="task._id" @click="changeState($event, task._id, task.done)">
+        <div class="task_id">
+          <h3>{{ task._id }}.</h3>
+        </div>
+        <div class="task_text">
+          <p :class="{crossed: task.done == 1}">{{ task.text }}</p>
+        </div>
+        <div class="task_done">
+          <p>{{ task.done }} </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="../src/js/tasks.js"></script>
+</body>
+
+</html>
