@@ -1,5 +1,9 @@
 # Tasks
 
+## SQL INJECTS
+
+Прокт не защещен от SQL inject так как не исползует PDO и ORM
+
 ## СТЕК
 
 1. MySQL
